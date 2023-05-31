@@ -1,21 +1,32 @@
 public class Ship
 {
+    private int row;
+    private int col;
+    private int length;
+    private int direction;
+    
     public static final int UNSET = -1;
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
     
-    private int row = UNSET;
-    private int col = UNSET;
-    private int length = UNSET;
-    private int direction = UNSET;
+    public Ship(int length)
+    {
+        this.length = length;
+        this.row = UNSET;
+        this.col = UNSET;
+        this.direction = UNSET;
+    }
     
     public boolean isLocationSet()
     {
         if(row == UNSET || col == UNSET)
         {
-            return false;
+        return false;
         }
+        else 
+        {
         return true;
+        }
     }
     
     public boolean isDirectionSet()
@@ -24,64 +35,72 @@ public class Ship
         {
             return false;
         }
-        return true;
+        else
+        {
+            return true;
+        }
     }
     
-    public void setLocation(int r, int c)
+    public void setLocation(int row, int col)
     {
-        row = r;
-        col = c;
+        this.row = row;
+        this.col = col;
     }
     
-    public void setDirection(int d)
+    public void setDirection(int direction)
     {
-        direction = d;
+        this.direction = direction;
     }
     
     public int getRow()
     {
-        return row;
+        return this.row;
     }
     
     public int getCol()
     {
-        return col;
+        return this.col;
     }
     
     public int getLength()
     {
-        return length;
+        return this.length;
     }
     
     public int getDirection()
     {
-        return direction;
+        return this.direction;
     }
     
     private String directionToString()
     {
-        if(direction == HORIZONTAL)
+        if(getDirection() == -1)
+        {
+            return "unset direction";
+        }
+        else if(getDirection() == 0)
         {
             return "horizontal";
         }
-        if(direction == VERTICAL)
+        else
         {
             return "vertical";
         }
-        return "unset direction";
     }
     
     private String locationToString()
     {
-        if(isDirectionSet())
+        if(getRow() == -1 || getCol() == -1)
         {
-            return "(" + row + ", " + col + ")";
+            return "unset location";
         }
-        return "(unset location)";
+        return "(" + getRow() + ", " + getCol() + ")";
     }
     
     public String toString()
     {
         return directionToString() + " ship of length " + length + " at " + "(" + locationToString() + ")";
     }
+    
+    
 }
