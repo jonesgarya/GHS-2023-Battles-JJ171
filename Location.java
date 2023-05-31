@@ -4,34 +4,28 @@ public class Location
     public static final int HIT = 1;
     public static final int MISSED = 2;
     
-    private boolean shipHere = false;
-    private int status = UNGUESSED;
+    private boolean shipStatus;
+    private int status;
+    
+    public Location()
+    {
+        shipStatus = false;
+        status = UNGUESSED;
+    }
     
     public boolean checkHit()
     {
-        if(status == HIT)
-        {
-            return true;
-        }
-        return false;
+        return status == HIT;
     }
     
     public boolean checkMiss()
     {
-        if(status == MISSED)
-        {
-            return true;
-        }
-        return false;
+        return status == MISSED;
     }
     
     public boolean isUnguessed()
     {
-        if(status == UNGUESSED)
-        {
-            return true;
-        }
-        return false;
+        return status == UNGUESSED;
     }
     
     public void markHit()
@@ -46,17 +40,20 @@ public class Location
     
     public boolean hasShip()
     {
-        return shipHere;
+        return shipStatus;
     }
     
     public void setShip(boolean val)
     {
-        shipHere = val;
+        shipStatus = val;
     }
     
-    public void setStatus(int TheStatus)
+    public void setStatus(int status)
     {
-        status = TheStatus;
+        if(status == UNGUESSED || status == HIT || status ==MISSED)
+        {
+            this.status = status;
+        }
     }
     
     public int getStatus()
