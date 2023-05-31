@@ -125,5 +125,28 @@ public class Grid
             }
             System.out.println("");
         }
-    }    
+    }
+    
+    public void addShip(Ship s) 
+    {
+        int length = s.getLength();
+        int dir = s.getDirection();
+        int row = s.getRow();
+        int col = s.getCol();
+        
+        if (dir == 1) 
+        {
+            for (int i = row; i < (s.getLength() + row); i++) 
+            {
+                setShip(i, col, true);
+            }
+        }
+        else 
+        {
+            for (int j = col; j < (s.getLength() + col); j++) 
+            {
+                setShip(row, j, true);
+            }
+        }
+    }
 }
